@@ -1,5 +1,3 @@
-import sys
-
 from vyl.routing import route
 from vyl.utils.process import joined_argv
 
