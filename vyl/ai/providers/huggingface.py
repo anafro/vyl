@@ -48,15 +48,17 @@ class HuggingFaceAI(AI):
 
     def create_solution(self, task: AITask) -> AISolution:
         chat_template = [
-            {"role": "system", "content": ai_concepts()},
-            {"role": "user", "content": f'''
-                <task>
-                    <prompt>{task.prompt}</prompt>
-                    <path>{task.path}</path>
-                    <memory>{self.memory}</memory>
-                    <chat-history>{self.chat}</chat-history>
-                </task>
-            '''}
+            {"role": "system", "content": f'''
+            <system>
+                <concepts>
+                    {ai_concepts()}
+                </concepts>
+                <path>{task.path}</path>
+                <memory>{self.memory}</memory>
+                <chat-history>{self.chat}</chat-history>
+            </system>
+            '''},
+            {"role": "user", "content": task.prompt}
         ]
         input_ids = self.tokenizer.apply_chat_template(chat_template, return_tensors="pt", add_generation_prompt=True).to(self.device)
         output_tokens = self.model.generate(input_ids=input_ids, max_new_tokens=800)
