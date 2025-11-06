@@ -1,13 +1,11 @@
 from vyl.utils.checkos import is_windows
 from vyl.utils.crash import crash
 
-from rich.console import Console
 
-
-def crash_if_cant_launch(console: Console) -> None:
+def crash_if_cant_launch() -> None:
     if not is_windows():
-        console.print("""
+        print("""
         Your OS does not seem to be Windows. 
-        We only run on Windows, our apologies.
+        We only run on Windows, my apologies.
         """)
         crash()

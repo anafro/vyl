@@ -1,10 +1,11 @@
 import sys
 
-from vyl.kernel import launch_vyl
+from vyl.routing import route
+from vyl.utils.process import joined_argv
 
 
 def main() -> None:
-    launch_vyl()
+    route(prompt=joined_argv())
 
 
 if __name__ == '__main__':

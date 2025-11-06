@@ -1,13 +1,9 @@
 import os
-from sys import argv
 
-from vyl.ai.chatloader import ai_chat_flush, ai_chat_add
-from vyl.ai.memoryloader import ai_memorize
+from vyl.ai.chatloader import ai_chat_add
 from vyl.ai.providers.huggingface import HuggingFaceAI
 from vyl.ai.task import AITask
-from vyl.requirements import crash_if_cant_launch
 from rich.console import Console
-from rich.syntax import Syntax
 from rich.prompt import Confirm
 from rich.style import Style, Color
 
@@ -16,20 +12,10 @@ stdout_style = Style(color=Color.parse('#222244'))
 code_style = Style(color=Color.parse('#222233'))
 console = Console(style=ai_style)
 ai = HuggingFaceAI(console)
-prompt = ' '.join(argv[1:])
 path = os.getcwd()
 
 
-def launch_vyl() -> None:
-    crash_if_cant_launch(console)
-    if prompt.lower().startswith('remember'):
-        ai_memorize(prompt)
-        return
-
-    if prompt.lower().startswith('flashbang'):
-        ai_chat_flush()
-        return
-
+def solve(prompt: str) -> None:
     task = AITask(prompt, path)
     solution = ai.create_solution(task)
 
