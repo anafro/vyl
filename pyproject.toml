@@ -1,0 +1,40 @@
+[project]
+name = "vyl"
+version = "1.0.0"
+description = "A free AI helper for your PC for daily tasks."
+authors = [
+    {name = "Anatoly Frolov",email = "anatolyfroloff@gmail.com"}
+]
+license = {text = "MIT"}
+readme = "README.md"
+requires-python = ">=3.13"
+#dependencies = [
+#    "ascii-colors (>=0.11.4,<0.12.0)",
+#    "transformers (>=4.57.1,<5.0.0)",
+#    "accelerate (>=1.11.0,<2.0.0)"
+#]
+[tool.poetry.dependencies]
+python = ">=3.13"
+ascii-colors = ">=0.11.4,<0.12.0"
+transformers = ">=4.57.1,<5.0.0"
+accelerate = ">=1.11.0,<2.0.0"
+torch = { version = "^2.6.0", source = "pytorch_cu124" }
+torchvision = { version = "^0.21.0", source = "pytorch_cu124" }
+safetensors = "^0.6.2"
+colorama = "^0.4.6"
+rich = "^14.2.0"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[[tool.poetry.source]]
+name = "pypi"
+priority = "primary"
+
+[[tool.poetry.source]]
+name = "pytorch_cu124"
+url = "https://download.pytorch.org/whl/cu124"
+priority = "supplemental"
+
+
