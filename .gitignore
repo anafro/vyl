@@ -1,4 +1,5 @@
-/vyl/ai/*.txt
+vyl/ai/chat.txt
+vyl/ai/memory.txt
 
 __pycache__/
 *.py[cod]
